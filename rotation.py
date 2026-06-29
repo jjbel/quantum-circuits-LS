@@ -29,8 +29,18 @@ class Bloch:
 
 def to_bloch(g: np.ndarray) -> Bloch:
     """Recover the Bloch form (alpha, n, theta) of a 2x2 unitary `g`."""
-    raise NotImplementedError("to_bloch is not implemented yet")
+    alpha = (np.angle(np.linalg.det(g)))/2
+    U_rot=(np.cos(alpha)-1j*np.sin(alpha))*g
+    theta=np.arccos((U_rot[0][0]+U_rot[1][1])/2)*2
+    U_imag=U_rot.imag
+    U_real=U_rot.real
+    n_x=U_imag[0][1]/np.sin(theta/2)
+    n_y=U_real[0][1]/np.sin(theta/2)
+    n_z=U_imag[0][0]/np.sin(theta/2)
+    n=np.array([n_x,n_y,n_z])
 
+    output = Bloch(alpha=alpha, n=n, theta=theta)
+    return output
 
 # n1, n2 are two orthogonal Bloch-sphere axes (n1 . n2 == 0)
 # TODO: fill in the two orthogonal rotation axes (each a length-3
