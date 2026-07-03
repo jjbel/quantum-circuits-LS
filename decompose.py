@@ -1,6 +1,6 @@
 """Decompose an arbitrary unitary into the universal basis {H, T, CNOT}.
 
-Python port (as student stubs) of the C++ pipeline in cpp/src/. A unitary is
+A unitary is
 lowered in stages:
 
     1. twolevel_decomposition:  Unitary     -> list[TwoLevel]
@@ -9,14 +9,13 @@ lowered in stages:
     4. decompose_cu:            CU          -> SingleQubitGate + CNOT
     5. decompose_to_ht:         SingleQubitGate -> H / T words (using rotation.py)
 
-Numpy stands in for the C++ types: a `Unitary` (N x N) and a 2x2 gate block are
+Numpy types: a `Unitary` (N x N) and a 2x2 gate block are
 both np.ndarray (complex128); a `ComplexVec` is a 1-D np.ndarray. A `Circuit` is a
 Python list of gate objects, each exposing `to_unitary()`; gates are stored in
 order of application (the first gate is applied first, i.e. the rightmost matrix
 factor).
 
-Every function/method below is a stub for students to implement; docstrings are
-ported from the C++ comments. See IMPLEMENT.md for the recommended order.
+Every function/method below is a stub for you to implement; See "Week 3.pdf" for the recommended order.
 """
 
 from __future__ import annotations
@@ -35,7 +34,7 @@ import rotation
 
 def num_qubits(N: int) -> int:
     """Number of qubits n such that N == 2^n (N is the unitary / two-level size)."""
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("num_qubits is not implemented yet")
 
 
@@ -63,7 +62,7 @@ class TwoLevel:
         """Expand to the full `size` x `size` matrix: identity except the 2x2 block
         placed at rows/cols (level0, level1).
         """
-        # TODO(student): implement.
+        # TODO: implement.
         raise NotImplementedError("TwoLevel.to_unitary is not implemented yet")
 
 
@@ -81,7 +80,7 @@ class SingleQubitGate:
         """Expand the 2x2 to N dimensions: for each basis index whose `qubit` bit is
         0, fill the 2x2 block linking it to its partner (that bit = 1).
         """
-        # TODO(student): implement.
+        # TODO: implement.
         raise NotImplementedError("SingleQubitGate.to_unitary is not implemented yet")
 
 
@@ -100,7 +99,7 @@ class ControlledU:
         """Identity everywhere except the single controlled block: the pair (all
         ones except the target bit, all ones).
         """
-        # TODO(student): implement.
+        # TODO: implement.
         raise NotImplementedError("ControlledU.to_unitary is not implemented yet")
 
 
@@ -119,7 +118,7 @@ class CU:
 
     def to_unitary(self) -> np.ndarray:
         """Identity except the control=1 blocks, where `unitary` acts on `target`."""
-        # TODO(student): implement.
+        # TODO: implement.
         raise NotImplementedError("CU.to_unitary is not implemented yet")
 
 
@@ -137,7 +136,7 @@ class CNOT:
         """Identity except the control=1 blocks, where X swaps the target's 0/1
         amplitudes.
         """
-        # TODO(student): implement.
+        # TODO: implement.
         raise NotImplementedError("CNOT.to_unitary is not implemented yet")
 
 
@@ -163,7 +162,7 @@ def circuit_to_unitary(circuit: Circuit) -> np.ndarray:
     application, so the product premultiplies (first gate is the rightmost factor):
     result = g_last @ ... @ g_1. Assumes the circuit is non-empty.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("circuit_to_unitary is not implemented yet")
 
 
@@ -171,7 +170,7 @@ def to_circuit(two_levels: TwoLevels) -> Circuit:
     """Wrap a two-level sequence as a circuit, so decompose_unitary /
     twolevel_decomposition output flows straight into a Circuit.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("to_circuit is not implemented yet")
 
 
@@ -180,7 +179,7 @@ def error_up_to_phase(a: np.ndarray, b: np.ndarray) -> float:
     global phase: align b to a by the phase of their Hilbert-Schmidt overlap
     <b, a> = sum conj(b_ij) a_ij, then compare. ~0 means equal up to global phase.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("error_up_to_phase is not implemented yet")
 
 
@@ -194,7 +193,7 @@ def align(x: complex, y: complex, norm: float) -> np.ndarray:
     a column with entries (x, y) at two levels rotates the amplitude at the second
     level onto the first, leaving the real `norm` there and 0 below.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("align is not implemented yet")
 
 
@@ -204,7 +203,7 @@ def decompose_vector(vec: np.ndarray) -> TwoLevels:
     Walk from the bottom up, using `align` at each pivot to zero out one entry; the
     running pivot holds the accumulated real norm after the first rotation.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("decompose_vector is not implemented yet")
 
 
@@ -212,7 +211,7 @@ def expand_twolevels(input: TwoLevels, n: int) -> TwoLevels:
     """Expand each TwoLevel to n dimensions by shifting size, level0, level1 up by
     the offset (n - tl.size). Used to lift a sub-block decomposition back to full n.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("expand_twolevels is not implemented yet")
 
 
@@ -220,7 +219,7 @@ def two_levels_to_unitary(two_levels: TwoLevels) -> np.ndarray:
     """Full matrix of a two-level sequence: premultiply each two-level's matrix in
     order (result = tl.to_unitary() @ result), reproducing the application order.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("two_levels_to_unitary is not implemented yet")
 
 
@@ -228,7 +227,7 @@ def adjoint_twolevel(tl: TwoLevel) -> TwoLevel:
     """Adjoint of a single two-level: same levels, adjoint (conjugate transpose) of
     the 2x2 block.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("adjoint_twolevel is not implemented yet")
 
 
@@ -236,7 +235,7 @@ def adjoint_twolevels(two_levels: TwoLevels) -> TwoLevels:
     """Adjoint of a sequence: reverse the order and take the adjoint of each, since
     (A_k ... A_1)^dagger = A_1^dagger ... A_k^dagger.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("adjoint_twolevels is not implemented yet")
 
 
@@ -247,7 +246,7 @@ def decompose_unitary(u: np.ndarray) -> TwoLevels:
     on the last two levels to cancel the residual phase, so the product is identity.
     Returns the sequence S with prod(S) @ u == I (i.e. prod(S) = u^dagger).
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("decompose_unitary is not implemented yet")
 
 
@@ -256,7 +255,7 @@ def twolevel_decomposition(u: np.ndarray) -> TwoLevels:
     sequence S that reduces u to identity (prod(S) = u^dagger), so its adjoint is
     the sequence whose product is u.
     """
-    # TODO(student): implement (hint: adjoint_twolevels(decompose_unitary(u))).
+    # TODO: implement (hint: adjoint_twolevels(decompose_unitary(u))).
     raise NotImplementedError("twolevel_decomposition is not implemented yet")
 
 
@@ -287,13 +286,13 @@ def abc_decompose(u: np.ndarray) -> ABC:
     Using X Ry(t) X = Ry(-t) and X Rz(t) X = Rz(-t), these satisfy A B C = I and
     e^{i alpha} A X B X C = u.
     """
-    # TODO(student): implement using rotation.euler_angles_zyz, rotation.Rz/Ry.
+    # TODO: implement using rotation.euler_angles_zyz, rotation.Rz/Ry.
     raise NotImplementedError("abc_decompose is not implemented yet")
 
 
 def abc_reconstruct(d: ABC) -> np.ndarray:
     """Reassemble e^{i alpha} A X B X C from an ABC (inverse of abc_decompose)."""
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("abc_reconstruct is not implemented yet")
 
 
@@ -308,7 +307,7 @@ def gray_code(tl: TwoLevel) -> list[Swap]:
     At each step the Swap records which qubit flips and the current code's values on
     the other qubits (the control pattern).
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("gray_code is not implemented yet")
 
 
@@ -316,18 +315,19 @@ def decompose_swap(swap: Swap) -> Circuit:
     """Decompose a Swap (multi-controlled NOT) into a Circuit: a controlled-X with
     the swap's arbitrary control values.
     """
-    # TODO(student): implement (hint: controlled_circuit with Pauli-X).
+    # TODO: implement (hint: controlled_circuit with Pauli-X).
     raise NotImplementedError("decompose_swap is not implemented yet")
 
 
-def controlled_circuit(n: int, target: int, control_vals: list[bool],
-                       unitary: np.ndarray) -> Circuit:
+def controlled_circuit(
+    n: int, target: int, control_vals: list[bool], unitary: np.ndarray
+) -> Circuit:
     """Circuit applying the 2x2 `unitary` to `target` iff every non-target qubit
     equals control_vals[q]. Realized as a fully-controlled-U core (ControlledU,
     controls = all 1) sandwiched by X gates on the qubits conditioned on 0, so those
     become 1-controls. The sandwich is symmetric (X is its own inverse).
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("controlled_circuit is not implemented yet")
 
 
@@ -342,12 +342,13 @@ def decompose_twolevel(tl: TwoLevel) -> Circuit:
     transition, then undo the walk. Orient the 2x2 so a00 (level0's corner) sits on
     the target value the second-to-last code has.
     """
-    # TODO(student): implement using gray_code, decompose_swap, controlled_circuit.
+    # TODO: implement using gray_code, decompose_swap, controlled_circuit.
     raise NotImplementedError("decompose_twolevel is not implemented yet")
 
 
-def decompose_controlled(n: int, controls: list[int], target: int,
-                         u: np.ndarray) -> Circuit:
+def decompose_controlled(
+    n: int, controls: list[int], target: int, u: np.ndarray
+) -> Circuit:
     """Decompose C^k(U) (k = len(controls)) into singly-controlled gates C(U) and
     CNOTs (Nielsen-Chuang fig 4.8). Base cases: no control -> a plain SingleQubitGate;
     one control -> a CNOT if U == X else a CU. Otherwise, with V = sqrt(U):
@@ -358,7 +359,7 @@ def decompose_controlled(n: int, controls: list[int], target: int,
         e. C^{k-1}(V) on target
     Phases are kept throughout.
     """
-    # TODO(student): implement (recursive; use rotation.unitary2_sqrt for V).
+    # TODO: implement (recursive; use rotation.unitary2_sqrt for V).
     raise NotImplementedError("decompose_controlled is not implemented yet")
 
 
@@ -366,7 +367,7 @@ def decompose_controlledU(g: ControlledU) -> Circuit:
     """Lower a ControlledU (controlled on all other qubits) into CNOTs + C(U): build
     the list of all non-target qubits as controls and call decompose_controlled.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("decompose_controlledU is not implemented yet")
 
 
@@ -377,7 +378,7 @@ def decompose_cu(g: CU) -> Circuit:
     phase on the control line. control=0: CNOTs vanish, target sees A B C = I;
     control=1: CNOTs act as X, target sees A X B X C = U with phase e^{i alpha}.
     """
-    # TODO(student): implement using abc_decompose.
+    # TODO: implement using abc_decompose.
     raise NotImplementedError("decompose_cu is not implemented yet")
 
 
@@ -390,7 +391,7 @@ def decompose_to_basis(u: np.ndarray) -> Circuit:
         4. decompose_cu:           CU          -> SingleQubitGate + CNOT
     Each stage rewrites only its own gate type and passes the rest through unchanged.
     """
-    # TODO(student): implement (run each rewrite pass over the circuit).
+    # TODO: implement (run each rewrite pass over the circuit).
     raise NotImplementedError("decompose_to_basis is not implemented yet")
 
 
@@ -400,7 +401,7 @@ def ht_gates(n: int, qubit: int, word: str) -> Circuit:
     circuit's application order (first gate first = rightmost factor) reproduces
     rotation.gates_to_unitary(word).
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("ht_gates is not implemented yet")
 
 
@@ -413,5 +414,5 @@ def decompose_to_ht(u: np.ndarray, error: float) -> Circuit:
     factor out into one overall global phase, so the result reconstructs u up to
     global phase (compare with error_up_to_phase).
     """
-    # TODO(student): implement using decompose_to_basis, ht_gates, and rotation.approximate_in_ht.
+    # TODO: implement using decompose_to_basis, ht_gates, and rotation.approximate_in_ht.
     raise NotImplementedError("decompose_to_ht is not implemented yet")

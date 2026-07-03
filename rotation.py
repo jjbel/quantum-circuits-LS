@@ -53,7 +53,7 @@ def n1n2n1_angles(b: Bloch) -> tuple[float, float, float, float]:
     where Ra(angle) is a rotation by `angle` about axis a, and {a1, a2, a3} is
     the orthonormal frame defined above. Returns (alpha, beta, gamma, global_phase).
     """
-    # TODO(student): implement using the steps above.
+    # TODO: implement using the steps above.
     raise NotImplementedError("n1n2n1_angles is not implemented yet")
 
 
@@ -69,7 +69,7 @@ def approx_angle_with_tolerance(angle: float, tolerance: float) -> int:
       * the angular distance between two wrapped angles a, b is
         min(|a - b|, TWO_PI - |a - b|) (so 0.01 and 2*pi - 0.01 count as close).
     """
-    # TODO(student): implement using the hint above.
+    # TODO: implement using the hint above.
     raise NotImplementedError("approx_angle_with_tolerance is not implemented yet")
 
 
@@ -99,7 +99,7 @@ def decompose_2x2(u: np.ndarray, tolerance: float) -> tuple[int, int, int]:
 
       3. Return (k, l, m).
     """
-    # TODO(student): implement using the steps above.
+    # TODO: implement using the steps above.
     raise NotImplementedError("decompose_2x2 is not implemented yet")
 
 
@@ -119,25 +119,25 @@ def from_axis_angle(b: Bloch) -> np.ndarray:
 
     where (b.n . sigma) = n_x X + n_y Y + n_z Z. Assumes b.n is a unit vector.
     """
-    # TODO(student): implement using the formula above.
+    # TODO: implement using the formula above.
     raise NotImplementedError("from_axis_angle is not implemented yet")
 
 
 def Rz(theta: float) -> np.ndarray:
     """Rotation about the z axis (no global phase):
 
-        Rz(theta) = diag(e^{-i theta/2}, e^{i theta/2}).
+    Rz(theta) = diag(e^{-i theta/2}, e^{i theta/2}).
     """
-    # TODO(student): implement (hint: from_axis_angle about axis [0, 0, 1]).
+    # TODO: implement (hint: from_axis_angle about axis [0, 0, 1]).
     raise NotImplementedError("Rz is not implemented yet")
 
 
 def Ry(theta: float) -> np.ndarray:
     """Rotation about the y axis (no global phase):
 
-        Ry(theta) = [[cos(theta/2), -sin(theta/2)], [sin(theta/2), cos(theta/2)]].
+    Ry(theta) = [[cos(theta/2), -sin(theta/2)], [sin(theta/2), cos(theta/2)]].
     """
-    # TODO(student): implement (hint: from_axis_angle about axis [0, 1, 0]).
+    # TODO: implement (hint: from_axis_angle about axis [0, 1, 0]).
     raise NotImplementedError("Ry is not implemented yet")
 
 
@@ -152,7 +152,7 @@ def euler_angles_zyz(u: np.ndarray) -> tuple[float, float, float, float]:
     s10 = sin(gamma/2) e^{i(beta-delta)/2}. When gamma = 0 (s10 = 0), beta/delta are
     split arbitrarily (gimbal lock); the identity still holds.
     """
-    # TODO(student): implement using the relations above.
+    # TODO: implement using the relations above.
     raise NotImplementedError("euler_angles_zyz is not implemented yet")
 
 
@@ -161,7 +161,7 @@ def unitary2_sqrt(u: np.ndarray) -> np.ndarray:
     Take the Bloch form of u and halve both alpha and theta (same axis); squaring
     back doubles them, reproducing u exactly.
     """
-    # TODO(student): implement (hint: to_bloch, halve alpha and theta, from_axis_angle).
+    # TODO: implement (hint: to_bloch, halve alpha and theta, from_axis_angle).
     raise NotImplementedError("unitary2_sqrt is not implemented yet")
 
 
@@ -182,7 +182,7 @@ def expand_word(word: list[int]) -> str:
     """Flatten an alternating (T-power, H-power, ...) exponent list into a literal
     string of 'H'/'T' gates (left-to-right). Even indices are T, odd indices are H.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("expand_word is not implemented yet")
 
 
@@ -193,7 +193,7 @@ def expand_word(word: list[int]) -> str:
 
 def gates_to_unitary(gates: str) -> np.ndarray:
     """The 2x2 unitary of a flat H/T gate string (left-to-right product)."""
-    # TODO(student): implement (multiply H / T for each char, starting from I).
+    # TODO: implement (multiply H / T for each char, starting from I).
     raise NotImplementedError("gates_to_unitary is not implemented yet")
 
 
@@ -201,7 +201,7 @@ def invert_gates(gates: str) -> str:
     """Inverse of a flat H/T word: reverse the gate order and invert each gate.
     H^-1 = H; the {H, T} basis has no T-dagger, so T^-1 must be spelled as T^7.
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("invert_gates is not implemented yet")
 
 
@@ -209,7 +209,7 @@ def power_gates(base: str, k: int) -> str:
     """The k-th power of a flat H/T word: base repeated k times. Negative k uses the
     inverse word (invert_gates).
     """
-    # TODO(student): implement.
+    # TODO: implement.
     raise NotImplementedError("power_gates is not implemented yet")
 
 
@@ -222,5 +222,5 @@ def approximate_in_ht(u: np.ndarray, error: float) -> str:
 
         power_gates(M1_STR, k) + power_gates(M2_STR, l) + power_gates(M1_STR, m).
     """
-    # TODO(student): implement using decompose_2x2 and power_gates.
+    # TODO: implement using decompose_2x2 and power_gates.
     raise NotImplementedError("approximate_in_ht is not implemented yet")
